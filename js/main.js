@@ -10,8 +10,8 @@ anio = 2021 - parseInt(edad);
 
 alert(nombre + " este es un simple código para pasar un desafio. Entiendo que " + locacion + 
 " es un lindo lugar para vivir (o eso me contaron). Según mis calculos (pueden fallar) naciste en el año " + 
-anio + ". Sin más que decir, ¡Saludos! PD: Si estas en una compu, podes ver este mensaje cuando quieras, tocando la tecla F12 y luego hacer click en Console")
+anio + ". Sin más que decir, ¡Saludos! PD: Si estas en una compu, podes ver este mensaje cuando quieras, tocando la tecla F12 y luego hacer click en Console");
 
 console.log(nombre + " este es un simple código para pasar un desafio. Entiendo que " + locacion + 
 " es un lindo lugar para vivir (o eso me contaron). Según mis calculos (pueden fallar) naciste en el año " + 
-anio + ". Sin más que decir, ¡Saludos!);
+anio + ". Sin más que decir, ¡Saludos!");
