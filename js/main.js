@@ -1,21 +1,16 @@
+let numero;
 let nombre;
-let equipo;
+let resultado;
 
 
+nombre = prompt("¡Hola! ¿Cómo te llamas?");
+numero = prompt(nombre + ", ¿Estas listo para la calculadora infinita sin sentido? \n Pone el número que quieras y algo va a pasar, cuando te canses ingresa cualquier letra o no pongas nada.");
 
-nombre = prompt("¡Buenas! ¿Cómo es tu nombre?");
-equipo = prompt("Genial " + nombre + ", ¿Con cuales de los 2 equipos de fútbol del súper clásico de Argentina te quedas?").toLowerCase();
-
-if ((equipo == "boca") || (equipo == "boca juniors") || (equipo == "river") || (equipo == "river plate")) {
-    if ((equipo=="boca") || (equipo == "boca juniors")){
-        alert(nombre +" elegiste la mitad más uno ;)");
-        console.log(nombre +" elegiste la mitad más uno ;)");
-    }else{
-        alert(nombre + " elegiste al millonario ;)")
-        console.log(nombre + " elegiste al millonario ;)");
-    }
-} else {
-    alert(nombre + " mmm ese equipo no pertenece al super clásico :(")
-    console.log(nombre + " mmm ese equipo no pertenece al super clásico :(");
+while(parseInt(numero)){
+    console.log("el numero es: " + numero + " y se le va a sumar " + nombre.length);  
+    resultado = parseInt(numero) + nombre.length;
+    console.log("El resultado es: " + resultado);
+    alert("Tu resultado es: " + resultado);
+    console.log("--------------------------------");
+    numero = prompt(nombre + ", ¿Estas listo para la calculadora infinita sin sentido? \n Pone el número que quieras y algo va a pasar, cuando te canses ingresa cualquier letra o no pongas nada.");
 }
-
