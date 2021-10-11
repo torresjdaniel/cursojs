@@ -1,16 +1,42 @@
-let numero;
+const paletaChica = 4300;
+const  paletaGrande = 4600;
+const pernil = 6500;
+
 let nombre;
-let resultado;
+let opcion;
+let cantidad;
+let opcion1 = "Opción 1: PALETA CHICA (Comen 10 personas) + 3 salsas y figazas. Costo: " + paletaChica + "$";
+let opcion2 = "Opción 2: PALETA CHICA (Comen 15 personas) + 3 salsas y figazas. Costo: " + paletaGrande + "$";
+let opcion3 = "Opción 3: PALETA CHICA (Comen 25 personas) + 5 salsas y figazas. Costo: " + pernil + "$";
 
 
-nombre = prompt("¡Hola! ¿Cómo te llamas?");
-numero = prompt(nombre + ", ¿Estas listo para la calculadora infinita sin sentido? \n Pone el número que quieras y algo va a pasar, cuando te canses ingresa cualquier letra o no pongas nada.");
+nombre = prompt("¡Hola!, ¿Cómo es tu nombre?");
 
-while(parseInt(numero)){
-    console.log("el numero es: " + numero + " y se le va a sumar " + nombre.length);  
-    resultado = parseInt(numero) + nombre.length;
-    console.log("El resultado es: " + resultado);
-    alert("Tu resultado es: " + resultado);
-    console.log("--------------------------------");
-    numero = prompt(nombre + ", ¿Estas listo para la calculadora infinita sin sentido? \n Pone el número que quieras y algo va a pasar, cuando te canses ingresa cualquier letra o no pongas nada.");
+opcion = prompt(nombre + " te contamos acerca de nuestras opciones: \n" + opcion1 + "\n" + opcion2 + "\n" + opcion3 +
+                "\n¿Cúal te gustaría elegir? (Ingresar solo el número de la opción)");
+                                
+console.log("Elegiste la opción: " + opcion);
+
+cantidad = prompt("¿Qué cantidad queres de la opción elegida? (Ingresar solo números)");
+
+console.log("Pediste " + cantidad + " de esa opción");
+
+alert("El costo de tu pedido es: " + pedido(opcion, cantidad) + "$");
+console.log("El costo de tu pedido es: " + pedido(opcion, cantidad) + "$");
+
+function pedido(opcionElegida, cantidadElegida) {
+    switch (opcionElegida) {
+        case "1":
+            return paletaChica * parseInt(cantidadElegida);
+            break;
+        case "2": 
+            return paletaGrande * parseInt(cantidadElegida);
+            break;
+        case "3":
+            return pernil * parseInt(cantidadElegida);
+            break;
+        default:
+            return 0;
+            break;    
+    }
 }
