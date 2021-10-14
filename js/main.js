@@ -1,19 +1,34 @@
-const paletaChica = 4300;
-const  paletaGrande = 4600;
-const pernil = 6500;
+
+class Opcion{
+    constructor(numero, corte, tamanio, personas, precio, salsas) {
+        this.numero = numero;
+        this.corte = corte;
+        this.tamanio = tamanio;
+        this.personas = personas;
+        this.precio = precio;
+        this.salsas = salsas;
+    }
+    menu(){
+        return "Opción "+this.numero+": "+this.corte+" "+this.tamanio+" (Comen " + this.personas + " personas) + "+this.salsas+" salsas y figazas. Costo: "+this.precio+"$" 
+    }
+}
+
+const opcion1 = new Opcion(1, "PALETA", "CHICA", 10, 4300, 3);
+const opcion2 = new Opcion(2, "PALETA", "GRANDE", 15, 4600, 3);
+const opcion3 = new Opcion(3, "PERNIL", "" , 25, 6500, 5);
 
 let nombre;
 let opcion;
 let cantidad;
 let precioFinal;
-let opcion1 = "Opción 1: PALETA CHICA (Comen 10 personas) + 3 salsas y figazas. Costo: " + paletaChica + "$";
-let opcion2 = "Opción 2: PALETA CHICA (Comen 15 personas) + 3 salsas y figazas. Costo: " + paletaGrande + "$";
-let opcion3 = "Opción 3: PALETA CHICA (Comen 25 personas) + 5 salsas y figazas. Costo: " + pernil + "$";
 
+console.log(opcion1.menu());
+console.log(opcion2.menu());
+console.log(opcion3.menu());
 
 nombre = prompt("¡Hola!, ¿Cómo es tu nombre?");
 
-opcion = prompt(nombre + " te contamos acerca de nuestras opciones: \n" + opcion1 + "\n" + opcion2 + "\n" + opcion3 +
+opcion = prompt(nombre + " te contamos acerca de nuestras opciones: \n" + opcion1.menu() + "\n" + opcion2.menu() + "\n" + opcion3.menu() +
                 "\n¿Cúal te gustaría elegir? (Ingresar solo el número de la opción)");
                                 
 console.log("Elegiste la opción: " + opcion);
@@ -27,16 +42,17 @@ precioFinal = pedido(opcion, cantidad)
 alert("El costo de tu pedido es: " + precioFinal + "$");
 console.log("El costo de tu pedido es: " + precioFinal + "$");
 
+
 function pedido(opcionElegida, cantidadElegida) {
     switch (opcionElegida) {
         case "1":
-            return paletaChica * parseInt(cantidadElegida);
+            return opcion1.precio * parseInt(cantidadElegida);
             break;
         case "2": 
-            return paletaGrande * parseInt(cantidadElegida);
+            return opcion2.precio * parseInt(cantidadElegida);
             break;
         case "3":
-            return pernil * parseInt(cantidadElegida);
+            return opcion3.precio * parseInt(cantidadElegida);
             break;
         default:
             return 0;
