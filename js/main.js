@@ -13,8 +13,6 @@ class Opcion{
     }
 }
 
-
-
 const opciones = [];
 
 opciones.push(new Opcion(1, "PALETA", "CHICA", 10, 4300, 3));
@@ -27,38 +25,22 @@ let cantidad;
 let precioFinal;
 
 for (const opcion of opciones )
-    console.log(opcion.menu())
+    console.log(opcion.menu());
+
+const ordenPrecio = opciones.sort(function (a,b){
+     
+    if(a.precio < b.precio){
+            return 1;
+        }
+        if(a.precio > b.precio){
+            return -1;
+        }
+        return 0;
+    });
+
+console.log(ordenPrecio);
 
 nombre = prompt("¡Hola!, ¿Cómo es tu nombre?");
 
-seleccion = prompt(nombre + " te contamos acerca de nuestras opciones: \n" + opciones[0].menu() + "\n" + opciones[1].menu() + "\n" + opciones[2].menu() +
-                "\n¿Cúal te gustaría elegir? (Ingresar solo el número de la opción)");
-                                
-console.log("Elegiste la opción: " + seleccion);
-
-cantidad = prompt("¿Qué cantidad queres de la opción elegida? (Ingresar solo números)");
-
-console.log("Pediste " + cantidad + " de esa opción");
-
-precioFinal = pedido(seleccion, cantidad)
-
-alert("El costo de tu pedido es: " + precioFinal + "$");
-console.log("El costo de tu pedido es: " + precioFinal + "$");
-
-
-function pedido(opcionElegida, cantidadElegida) {
-    switch (opcionElegida) {
-        case "1":
-            return opciones[0].precio * parseInt(cantidadElegida);
-            break;
-        case "2": 
-            return opciones[1].precio * parseInt(cantidadElegida);
-            break;
-        case "3":
-            return opciones[2].precio * parseInt(cantidadElegida);
-            break;
-        default:
-            return 0;
-            break;    
-    }
-}
+for (const orden of ordenPrecio)
+    alert(nombre+" estos son nuestros precios de mayor a menor precio: " + orden.precio +"$");
