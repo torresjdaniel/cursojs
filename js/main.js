@@ -9,56 +9,56 @@ class Opcion{
         this.salsas = salsas;
     }
     menu(){
-        return "Opción "+this.numero+": "+this.corte+" "+this.tamanio+" (Comen " + this.personas + " personas) + "+this.salsas+" salsas y figazas. Costo: "+this.precio+"$" 
+        return `Opción ${this.numero}: ${this.corte} ${this.tamanio} (Comen ${this.personas} personas) + ${this.salsas} salsas y figazas. Costo: ${this.precio}\$` 
     }
 }
-
-
 
 const opciones = [];
 
 opciones.push(new Opcion(1, "PALETA", "CHICA", 10, 4300, 3));
 opciones.push(new Opcion(2, "PALETA", "GRANDE", 15, 4600, 3));
-opciones.push(new Opcion(3, "PERNIL", "" , 25, 6500, 5));
+opciones.push(new Opcion(3, "PERNIL", "REGULAR" , 25, 6500, 5));
 
 let nombre;
 let seleccion;
 let cantidad;
 let precioFinal;
+let cartilla = "";
+let resumen = document.getElementById("article");
 
-for (const opcion of opciones )
-    console.log(opcion.menu())
+for (const opcion of opciones ){
+    cartilla += `${opcion.menu()}
+`;
+}
+
+console.log(`Cartilla: 
+${cartilla}`);
 
 nombre = prompt("¡Hola!, ¿Cómo es tu nombre?");
 
-seleccion = prompt(nombre + " te contamos acerca de nuestras opciones: \n" + opciones[0].menu() + "\n" + opciones[1].menu() + "\n" + opciones[2].menu() +
-                "\n¿Cúal te gustaría elegir? (Ingresar solo el número de la opción)");
+seleccion =  parseInt( prompt(`${nombre} te contamos acerca de nuestras opciones:
+${cartilla}¿Cúal te gustaría elegir? (Ingresar solo el número de la opción)`));
                                 
-console.log("Elegiste la opción: " + seleccion);
+console.log(`Elegiste la opción: ${seleccion}`);
 
-cantidad = prompt("¿Qué cantidad queres de la opción elegida? (Ingresar solo números)");
+cantidad = parseInt(prompt("¿Qué cantidad queres de la opción elegida? (Ingresar solo números)"));
 
-console.log("Pediste " + cantidad + " de esa opción");
+console.log(`Pediste ${cantidad} de esa opción`);
 
-precioFinal = pedido(seleccion, cantidad)
+if (seleccion <= opciones.length && seleccion > 0 ) {
+    precioFinal = opciones[seleccion - 1].precio * cantidad;
+    resumen.innerHTML = `<h2>¡Hola ${nombre}!</h2>
+                         <p>Este es el resumen de tu pedido:<br>
+                            El costo de tu pedido es: ${precioFinal}$<br>
+                            Elegiste ${cantidad} unidades deFab:<br> 
+                            ${opciones[seleccion - 1].menu()}</p>`;
+    console.log(`El costo de tu pedido es: ${precioFinal}$. Resumen:
+${seleccion} de ${opciones[seleccion - 1].menu()}`);
+} else {
+    precioFinal = 0;
+    resumen.innerHTML = `<h2>¡Hola ${nombre}!</h2>
+                         <p>El costo de tu pedido es: ${precioFinal}$. Porque no contamos con el número de opción que elegiste.</p>`;
+    console.log(`El costo de tu pedido es: ${precioFinal}$. Porque no contamos con el número de opción que elegiste.`);
+};
 
-alert("El costo de tu pedido es: " + precioFinal + "$");
-console.log("El costo de tu pedido es: " + precioFinal + "$");
-
-
-function pedido(opcionElegida, cantidadElegida) {
-    switch (opcionElegida) {
-        case "1":
-            return opciones[0].precio * parseInt(cantidadElegida);
-            break;
-        case "2": 
-            return opciones[1].precio * parseInt(cantidadElegida);
-            break;
-        case "3":
-            return opciones[2].precio * parseInt(cantidadElegida);
-            break;
-        default:
-            return 0;
-            break;    
-    }
-}
+ 
