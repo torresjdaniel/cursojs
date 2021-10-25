@@ -50,7 +50,7 @@ if (seleccion <= opciones.length && seleccion > 0 ) {
     resumen.innerHTML = `<h2>¡Hola ${nombre}!</h2>
                          <p>Este es el resumen de tu pedido:<br>
                             El costo de tu pedido es: ${precioFinal}$<br>
-                            Elegiste ${cantidad} unidades deFab:<br> 
+                            Elegiste ${cantidad} unidades de:<br> 
                             ${opciones[seleccion - 1].menu()}</p>`;
     console.log(`El costo de tu pedido es: ${precioFinal}$. Resumen:
 ${seleccion} de ${opciones[seleccion - 1].menu()}`);
