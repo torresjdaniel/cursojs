@@ -59,10 +59,4 @@ function presupuesto(e){
                              <p>El costo de tu pedido es: ${precioFinal}$. Porque no elegiste una cantidad.</p>`;
     }
     articleResumen.appendChild(div);
-}
-
-
-
-
-
-
+};
