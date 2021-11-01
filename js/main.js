@@ -60,5 +60,3 @@ ${seleccion} de ${opciones[seleccion - 1].menu()}`);
                          <p>El costo de tu pedido es: ${precioFinal}$. Porque no contamos con el número de opción que elegiste.</p>`;
     console.log(`El costo de tu pedido es: ${precioFinal}$. Porque no contamos con el número de opción que elegiste.`);
 };
-
- 
