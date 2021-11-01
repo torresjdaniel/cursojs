@@ -24,27 +24,11 @@ let nombre;
 let seleccion;
 let cantidad;
 let precioFinal;
-// const articleMenu = document.getElementById("menu");
+
 const ulOpciones = document.getElementById("opciones");
 const formPresupuesto = document.getElementById("presupuesto");
 const articleResumen = document.getElementById("resumen");
 const selectOpcion = document.getElementById("opcion");
-
-
-// for (const opcion of opciones) {
-//     let div = document.createElement("div");
-//     div.innerHTML = `<h3>Opción ${opcion.numero}:</h3>
-//                      <ul>
-//                          <li>${opcion.corte} ${opcion.tamanio}.</li>
-//                          <li>Comen ${opcion.personas} personas.</li>
-//                          <li>${opcion.salsas} salsas.</li>
-//                          <li>${opcion.pan} Kilos de figazas</li>
-//                          <li>Precio: ${opcion.precio}$</li>
-//                      </ul>
-//                     `
-                    
-//     articleMenu.appendChild(div);
-// }
 
 for (const opcion of opciones) {
     let li = document.createElement("li");
