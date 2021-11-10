@@ -1,14 +1,14 @@
 function crearPresupuesto(e){
     articleResumen.innerHTML = "";
     e.preventDefault();
-    nombre = formPresupuesto.children[1].value;
-    seleccion = parseInt(formPresupuesto.children[2].value);
-    cantidad = parseInt(formPresupuesto.children[3].value);
+    nombre = divPresupuesto.children[0].value;
+    seleccion = parseInt(divPresupuesto.children[1].value);
+    cantidad = parseInt(divPresupuesto.children[2].value);
     crearPresupuestoUI(articleResumen)
     guardarPresupuesto("presupuesto");
-    formPresupuesto.children[1].value = "";
+    divPresupuesto.children[0].value = "";
     selectOpcion.innerHTML = `<option>¡Elegí tu opción!</option>`;
-    formPresupuesto.children[3].value = "";
+    divPresupuesto.children[2].value = "";
 
 };
 

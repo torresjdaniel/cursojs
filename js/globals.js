@@ -10,3 +10,4 @@ const ulOpciones = document.getElementById("opciones");
 const formPresupuesto = document.getElementById("presupuesto");
 const articleResumen = document.getElementById("resumen");
 const selectOpcion = document.getElementById("opcion");
+const divPresupuesto = document.getElementById("divPresupuesto");
