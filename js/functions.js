@@ -51,17 +51,22 @@ function selectConfig(select){
 }
 
 function guardarPresupuesto(clave){
-    const presupuestoJSON = JSON.stringify(new Presupuesto(nombre, seleccion, cantidad, precioFinal));
+    presupuestos.push(new Presupuesto(nombre, seleccion, cantidad, precioFinal));
+    const presupuestoJSON = JSON.stringify(presupuestos);
     localStorage.setItem(clave, presupuestoJSON);
 }
 
 function cargarPresupuesto(clave, contenedor){
     if (localStorage.length > 0){
-        const presupuesto = JSON.parse(localStorage.getItem(clave));
-        nombre = presupuesto.nombreElegido;
-        seleccion = parseInt(presupuesto.opcionElegida);
-        cantidad = parseInt(presupuesto.cantidadElegida);
-        precioFinal = parseInt(presupuesto.precioFinalElegido);
+        let presupuestoss = JSON.parse(localStorage.getItem(clave));
+        for (const presupuesto of presupuestoss) {
+            presupuestos.push(presupuesto);
+        }
+        let indice = presupuestos.length - 1
+        nombre = presupuestos[indice].nombreElegido;
+        seleccion = parseInt(presupuestos[indice].opcionElegida);
+        cantidad = parseInt(presupuestos[indice].cantidadElegida);
+        precioFinal = parseInt(presupuestos[indice].precioFinalElegido);
         cargarPresupuestoUI(contenedor);          
     }  
 }

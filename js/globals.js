@@ -1,4 +1,5 @@
 const opciones = [];
+const presupuestos = [];
 
 let nombre;
 let seleccion; 
