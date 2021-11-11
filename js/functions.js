@@ -59,23 +59,27 @@ function guardarPresupuesto(clave){
 function cargarPresupuesto(clave, contenedor){
     if (clave in localStorage){
         const presupuestoss = JSON.parse(localStorage.getItem(clave));
-        for (const presupuesto of presupuestoss) {
-            presupuestos.push(presupuesto);
-        }
-        let indice = presupuestos.length - 1
-        nombre = presupuestos[indice].nombreElegido;
-        seleccion = parseInt(presupuestos[indice].opcionElegida);
-        cantidad = parseInt(presupuestos[indice].cantidadElegida);
-        precioFinal = parseInt(presupuestos[indice].precioFinalElegido);
-        cargarPresupuestoUI(contenedor);          
+        if (presupuestoss.length == undefined){
+            localStorage.clear();
+        }else {
+            for (const presupuesto of presupuestoss) {
+                presupuestos.push(presupuesto);
+            }
+            let indice = presupuestos.length - 1
+            nombre = presupuestos[indice].nombreElegido;
+            seleccion = parseInt(presupuestos[indice].opcionElegida);
+            cantidad = parseInt(presupuestos[indice].cantidadElegida);
+            precioFinal = parseInt(presupuestos[indice].precioFinalElegido);
+            cargarPresupuestoUI(contenedor); 
+        }         
     }  
 }
 
-function verificarStorage(clave){
-    if (clave in localStorage){
-    let check = JSON.parse(localStorage.getItem(clave));
-        if (check.length == undefined) {
-            localStorage.clear();
-        }
-    }       
-}
+// function verificarStorage(clave){
+//     if (clave in localStorage){
+//     let check = JSON.parse(localStorage.getItem(clave));
+//         if (check.length == undefined) {
+//             localStorage.clear();
+//         }
+//     }       
+// }
