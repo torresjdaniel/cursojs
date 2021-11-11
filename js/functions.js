@@ -59,6 +59,9 @@ function guardarPresupuesto(clave){
 function cargarPresupuesto(clave, contenedor){
     if (clave in localStorage){
         let presupuestoss = JSON.parse(localStorage.getItem(clave));
+        if (presupuestoss.length == undefined) {
+            localStorage.clear();
+        }
         for (const presupuesto of presupuestoss) {
             presupuestos.push(presupuesto);
         }
