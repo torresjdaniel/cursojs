@@ -5,6 +5,7 @@ opciones.push(new Opcion(3, "PERNIL", "REGULAR" , 25, 6500, 5, 4));
 
 
 selectOpcion.innerHTML = `<option>¡Elegí tu opción!</option>`;
+verificarStorage("presupuesto");
 cargarPresupuesto("presupuesto", articleResumen);
 
 for (const opcion of opciones) {

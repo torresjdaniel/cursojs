@@ -58,10 +58,7 @@ function guardarPresupuesto(clave){
 
 function cargarPresupuesto(clave, contenedor){
     if (clave in localStorage){
-        let presupuestoss = JSON.parse(localStorage.getItem(clave));
-        if (presupuestoss.length == undefined) {
-            localStorage.clear();
-        }
+        const presupuestoss = JSON.parse(localStorage.getItem(clave));
         for (const presupuesto of presupuestoss) {
             presupuestos.push(presupuesto);
         }
@@ -72,4 +69,13 @@ function cargarPresupuesto(clave, contenedor){
         precioFinal = parseInt(presupuestos[indice].precioFinalElegido);
         cargarPresupuestoUI(contenedor);          
     }  
+}
+
+function verificarStorage(clave){
+    if (clave in localStorage){
+    let check = JSON.parse(localStorage.getItem(clave));
+        if (check.length == undefined) {
+            localStorage.clear();
+        }
+    }       
 }
