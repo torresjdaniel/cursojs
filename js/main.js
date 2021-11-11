@@ -5,13 +5,15 @@ opciones.push(new Opcion(3, "PERNIL", "REGULAR" , 25, 6500, 5, 4));
 
 
 selectOpcion.innerHTML = `<option>¡Elegí tu opción!</option>`;
-// verificarStorage("presupuesto");
-cargarPresupuesto("presupuesto", articleResumen);
+$(document).ready(function(){cargarPresupuesto("presupuesto", articleResumen);})
 
 for (const opcion of opciones) {
     let li = document.createElement("li");
+    let contador = 1500;
+    li.id = `opcion${opcion.numero}`;
     li.innerHTML = opcion.menu();
-    ulOpciones.appendChild(li);  
+    ulOpciones.appendChild(li);
+    $(`#opcion${opcion.numero}`).fadeIn(contador*opcion.numero); 
 }
 
 formPresupuesto.addEventListener("submit", crearPresupuesto);

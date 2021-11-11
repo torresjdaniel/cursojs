@@ -14,6 +14,7 @@ function crearPresupuesto(e){
 
 function crearPresupuestoUI(contenedor){
     let div = document.createElement("div");
+    div.id = "divResumen";
     if (cantidad > 0 ) {
         precioFinal = opciones[seleccion - 1].precio * cantidad;
         div.innerHTML = `<h2>¡Hola ${nombre}! Este es el resumen de tu pedido:</h2>
@@ -25,11 +26,13 @@ function crearPresupuestoUI(contenedor){
         div.innerHTML = `<h2>¡Hola ${nombre}!</h2>
                              <p>El costo de tu pedido es: ${precioFinal}$. Porque no elegiste una cantidad.</p>`;
     }
-    contenedor.appendChild(div);    
+    contenedor.appendChild(div);
+    $("#divResumen").fadeIn(1500);   
 }
 
 function cargarPresupuestoUI(contenedor){
     let div = document.createElement("div");
+    div.id = "divResumen";
     if (cantidad > 0 ) {
         div.innerHTML = `<h2>¡Hola ${nombre}! Este fue tu último pedido:</h2>
                              <p>El costo de tu pedido es: ${precioFinal}$<br>
@@ -40,7 +43,10 @@ function cargarPresupuestoUI(contenedor){
         div.innerHTML = `<h2>¡Hola ${nombre}! Este fue tu último pedido:</h2>
                              <p>El costo de tu pedido es: ${precioFinal}$. Porque no elegiste una cantidad.</p>`;
     }
-    contenedor.appendChild(div);    
+    contenedor.appendChild(div);  
+    $("#divResumen").fadeIn(1500, function(){
+        $("#divResumen").fadeOut(15000);
+    }); 
 }
 
 function selectConfig(select){
@@ -74,12 +80,3 @@ function cargarPresupuesto(clave, contenedor){
         }         
     }  
 }
-
-// function verificarStorage(clave){
-//     if (clave in localStorage){
-//     let check = JSON.parse(localStorage.getItem(clave));
-//         if (check.length == undefined) {
-//             localStorage.clear();
-//         }
-//     }       
-// }
