@@ -52,7 +52,7 @@ function cargarPresupuestoUI(contenedor){
 function selectConfig(select){
     select.innerHTML = "";
     for (const opcion of opciones) {
-        select.innerHTML += `<option value="${opcion.numero}">Opción ${opcion.numero}</option>`;  
+        select.innerHTML += `<option value="${opcion.numero}">${opcion.menu()}</option>`;  
     }
 }
 
