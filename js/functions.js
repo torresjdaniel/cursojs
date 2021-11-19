@@ -96,7 +96,8 @@ function hacerPedido() {
     const presupuestoJSON = JSON.stringify(presupuestos[indice]);
     $.post(URLPOST, presupuestoJSON, (respuesta, estado) => {
         if(estado == "success"){
-            alert(`Pedido Enviado. Numero de compra: ${respuesta.id}`)
+            alert(`Pedido Enviado. Numero de compra: ${respuesta.id}`);
+            $("#divResumen").fadeOut(2000);
         }
-    })
+    });
 }
