@@ -8,51 +8,59 @@ function crearPresupuesto(e){
     guardarPresupuesto("presupuesto");
     divPresupuesto.children[0].value = "";
     selectOpcion.innerHTML = `<option>¡Elegí tu opción!</option>`;
-    divPresupuesto.children[2].value = "";
-
+    selectCantidad.innerHTML = `<option>Cantidad</option>`;
 };
 
-function crearPresupuestoUI(contenedor){
+function crearPresupuestoUI(contenedor) {
     let div = document.createElement("div");
     div.id = "divResumen";
-    if (cantidad > 0 ) {
-        precioFinal = opciones[seleccion - 1].precio * cantidad;
-        div.innerHTML = `<h2>¡Hola ${nombre}! Este es el resumen de tu pedido:</h2>
-                             <p>El costo de tu pedido es: ${precioFinal}$<br>
-                                Elegiste ${cantidad} de:<br> 
-                                ${opciones[seleccion - 1].menu()}</p>`;
-    } else {
-        precioFinal = 0;
-        div.innerHTML = `<h2>¡Hola ${nombre}!</h2>
-                             <p>El costo de tu pedido es: ${precioFinal}$. Porque no elegiste una cantidad.</p>`;
-    }
+    precioFinal = opciones[seleccion - 1].precio * cantidad;
+    div.innerHTML = `<h2>¡Hola ${nombre}! Este es el resumen de tu pedido:</h2>
+                         <p>El costo de tu pedido es: ${precioFinal}$<br>
+                            Elegiste ${cantidad} de:<br> 
+                            ${opciones[seleccion - 1].menu()}
+                         </p>`;
+
     contenedor.appendChild(div);
-    $("#divResumen").fadeIn(1500);   
+    $(div).append('<button id="btn">Hacer pedido</button>'); 
+    $('#btn').click(hacerPedido);
+    $("#divResumen").fadeIn(1500);
 }
 
 function cargarPresupuestoUI(contenedor){
     let div = document.createElement("div");
     div.id = "divResumen";
-    if (cantidad > 0 ) {
-        div.innerHTML = `<h2>¡Hola ${nombre}! Este fue tu último pedido:</h2>
-                             <p>El costo de tu pedido es: ${precioFinal}$<br>
-                                Elegiste ${cantidad} de:<br> 
-                                ${opciones[seleccion - 1].menu()}</p>`;
-    } else {
-        precioFinal = 0;
-        div.innerHTML = `<h2>¡Hola ${nombre}! Este fue tu último pedido:</h2>
-                             <p>El costo de tu pedido es: ${precioFinal}$. Porque no elegiste una cantidad.</p>`;
-    }
+    div.innerHTML = `<h2>¡Hola ${nombre}! Este fue tu último pedido:</h2>
+                        <p>El costo de tu pedido es: ${precioFinal}$<br>
+                            Elegiste ${cantidad} de:<br> 
+                            ${opciones[seleccion - 1].menu()}
+                        </p>`;
+
     contenedor.appendChild(div);  
     $("#divResumen").fadeIn(1500, function(){
         $("#divResumen").fadeOut(15000);
     }); 
 }
 
-function selectConfig(select){
-    select.innerHTML = "";
-    for (const opcion of opciones) {
-        select.innerHTML += `<option value="${opcion.numero}">Opción ${opcion.numero}</option>`;  
+function selectConfig(select, tipo) {
+    switch (tipo) {
+        case opcion:
+            select.innerHTML = "";
+            for (const opcion of opciones) {
+                select.innerHTML += `<option value="${opcion.numero}">Opción ${opcion.numero}</option>`;
+            }
+            break;
+        case cantidad:
+            select.innerHTML = "";
+            select.innerHTML += `<option value="1">1</option>
+                                 <option value="2">2</option>   
+                                 <option value="3">3</option>                           
+                                 <option value="4">4</option>                           
+                                 <option value="5">5</option>
+                                                             `;
+            break;
+        default:
+            break;
     }
 }
 
@@ -71,7 +79,7 @@ function cargarPresupuesto(clave, contenedor){
             for (const presupuesto of presupuestoss) {
                 presupuestos.push(presupuesto);
             }
-            let indice = presupuestos.length - 1
+            let indice = presupuestos.length - 1;
             nombre = presupuestos[indice].nombreElegido;
             seleccion = parseInt(presupuestos[indice].opcionElegida);
             cantidad = parseInt(presupuestos[indice].cantidadElegida);
@@ -79,4 +87,16 @@ function cargarPresupuesto(clave, contenedor){
             cargarPresupuestoUI(contenedor); 
         }         
     }  
+}
+
+
+
+function hacerPedido() {
+    let indice = presupuestos.length - 1;
+    const presupuestoJSON = JSON.stringify(presupuestos[indice]);
+    $.post(URLPOST, presupuestoJSON, (respuesta, estado) => {
+        if(estado == "success"){
+            alert(`Pedido Enviado. Numero de compra: ${respuesta.id}`)
+        }
+    })
 }

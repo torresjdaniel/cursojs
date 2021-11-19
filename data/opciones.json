@@ -1,0 +1,4 @@
+[{"numero": 1, "corte": "PALETA", "tamanio": "CHICA", "personas": 10, "precio": 4300, "salsas": 3, "pan": 2},
+{"numero": 2, "corte": "PALETA", "tamanio": "GRANDE", "personas": 15, "precio": 4600, "salsas": 4, "pan": 3},
+{"numero": 3, "corte": "PERNIL", "tamanio": "REGULAR", "personas": 25, "precio": 6500, "salsas": 5, "pan": 4}
+]

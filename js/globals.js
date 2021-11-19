@@ -1,5 +1,7 @@
 const opciones = [];
 const presupuestos = [];
+const URLJSON = "data/opciones.json";
+const URLPOST = "https://jsonplaceholder.typicode.com/posts";
 
 let nombre;
 let seleccion; 
@@ -10,4 +12,5 @@ const ulOpciones = document.getElementById("opciones");
 const formPresupuesto = document.getElementById("presupuesto");
 const articleResumen = document.getElementById("resumen");
 const selectOpcion = document.getElementById("opcion");
+const selectCantidad = document.getElementById("cantidad");
 const divPresupuesto = document.getElementById("divPresupuesto");

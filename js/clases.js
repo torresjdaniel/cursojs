@@ -12,6 +12,7 @@ class Opcion{
     menu(){
         return `Opción ${this.numero}: ${this.corte} ${this.tamanio} (Comen ${this.personas} personas) + ${this.salsas} salsas + ${this.pan} Kilos de figazas. Costo: ${this.precio}$` 
     }
+    
 }
 
 class Presupuesto{
