@@ -14,15 +14,25 @@ function crearPresupuesto(e){
 function crearPresupuestoUI(contenedor) {
     let div = document.createElement("div");
     div.id = "divResumen";
-    precioFinal = opciones[seleccion - 1].precio * cantidad;
-    div.innerHTML = `<h2>¡Hola ${nombre}! Este es el resumen de tu pedido:</h2>
+    precioFinal = opciones[seleccion - 1].precio * cantidad; 
+    switch (cantidad) {
+        case 1:
+            div.innerHTML = `<h2>¡Hola ${nombre}! Este es el resumen de tu pedido:</h2>
                          <p>El costo de tu pedido es: ${precioFinal}$<br>
-                            Elegiste ${cantidad} de:<br> 
+                            Elegiste ${cantidad} unidad de la opción ${seleccion}, que incluye:<br> 
                             ${opciones[seleccion - 1].menu()}
                          </p>`;
-
+            break;
+        default:
+            div.innerHTML = `<h2>¡Hola ${nombre}! Este es el resumen de tu pedido:</h2>
+                         <p>El costo de tu pedido es: ${precioFinal}$<br>
+                            Elegiste ${cantidad} unidades la opción ${seleccion}, que incluye:<br> 
+                            ${opciones[seleccion - 1].menu()}
+                         </p>`;
+            break;
+    } 
     contenedor.appendChild(div);
-    $(div).append('<button id="btn">Hacer pedido</button>'); 
+    $(div).append('<button id="btn">Hacer pedido</button>');
     $('#btn').click(hacerPedido);
     $("#divResumen").fadeIn(1500);
 }
@@ -30,12 +40,22 @@ function crearPresupuestoUI(contenedor) {
 function cargarPresupuestoUI(contenedor){
     let div = document.createElement("div");
     div.id = "divResumen";
-    div.innerHTML = `<h2>¡Hola ${nombre}! Este fue tu último pedido:</h2>
-                        <p>El costo de tu pedido es: ${precioFinal}$<br>
-                            Elegiste ${cantidad} de:<br> 
+    switch (cantidad) {
+        case 1:
+            div.innerHTML = `<h2>¡Hola ${nombre}! Este es el resumen de tu pedido:</h2>
+                         <p>El costo de tu pedido es: ${precioFinal}$<br>
+                            Elegiste ${cantidad} unidad de la opción ${seleccion}, que incluye:<br> 
                             ${opciones[seleccion - 1].menu()}
-                        </p>`;
-
+                         </p>`;
+            break;
+        default:
+            div.innerHTML = `<h2>¡Hola ${nombre}! Este es el resumen de tu pedido:</h2>
+                         <p>El costo de tu pedido es: ${precioFinal}$<br>
+                            Elegiste ${cantidad} unidades la opción ${seleccion}, que incluye:<br> 
+                            ${opciones[seleccion - 1].menu()}
+                         </p>`;
+            break;
+    } 
     contenedor.appendChild(div);  
     $("#divResumen").fadeIn(1500, function(){
         $("#divResumen").fadeOut(15000);
