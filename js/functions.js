@@ -1,5 +1,4 @@
 function crearPresupuesto(e){
-    articleResumen.innerHTML = "";
     e.preventDefault();
     nombre = divPresupuesto.children[0].value;
     seleccion = parseInt(divPresupuesto.children[1].value);
@@ -12,25 +11,15 @@ function crearPresupuesto(e){
 };
 
 function crearPresupuestoUI(contenedor) {
+    contenedor.innerHTML = "";
     let div = document.createElement("div");
     div.id = "divResumen";
     precioFinal = opciones[seleccion - 1].precio * cantidad; 
-    switch (cantidad) {
-        case 1:
-            div.innerHTML = `<h2>¡Hola ${nombre}! Este es el resumen de tu pedido:</h2>
+    div.innerHTML = `<h2>¡Hola ${nombre}! Este es el resumen de tu pedido:</h2>
                          <p>El costo de tu pedido es: ${precioFinal}$<br>
-                            Elegiste ${cantidad} unidad de la opción ${seleccion}, que incluye:<br> 
-                            ${opciones[seleccion - 1].menu()}
+                             Elegiste ${cantidad} ${cantidad == 1 ? "unidad" : "unidades" } de la opción ${seleccion}, que incluye:<br> 
+                             ${opciones[seleccion - 1].menu()}
                          </p>`;
-            break;
-        default:
-            div.innerHTML = `<h2>¡Hola ${nombre}! Este es el resumen de tu pedido:</h2>
-                         <p>El costo de tu pedido es: ${precioFinal}$<br>
-                            Elegiste ${cantidad} unidades la opción ${seleccion}, que incluye:<br> 
-                            ${opciones[seleccion - 1].menu()}
-                         </p>`;
-            break;
-    } 
     contenedor.appendChild(div);
     $(div).append('<button id="btn">Hacer pedido</button>');
     $('#btn').click(hacerPedido);
@@ -38,28 +27,29 @@ function crearPresupuestoUI(contenedor) {
 }
 
 function cargarPresupuestoUI(contenedor){
+    formPresupuesto.children[2].value = "Hacer otro resumen"
+    contenedor.innerHTML = "";
     let div = document.createElement("div");
     div.id = "divResumen";
-    switch (cantidad) {
-        case 1:
-            div.innerHTML = `<h2>¡Hola ${nombre}! Este es el resumen de tu pedido:</h2>
+    div.innerHTML = `<h2>¡Hola ${nombre}! Este es el resumen de tu último presupuesto:</h2>
                          <p>El costo de tu pedido es: ${precioFinal}$<br>
-                            Elegiste ${cantidad} unidad de la opción ${seleccion}, que incluye:<br> 
-                            ${opciones[seleccion - 1].menu()}
+                             Elegiste ${cantidad} ${cantidad == 1 ? "unidad" : "unidades" } de la opción ${seleccion}, que incluye:<br> 
+                             ${opciones[seleccion - 1].menu()}
                          </p>`;
-            break;
-        default:
-            div.innerHTML = `<h2>¡Hola ${nombre}! Este es el resumen de tu pedido:</h2>
-                         <p>El costo de tu pedido es: ${precioFinal}$<br>
-                            Elegiste ${cantidad} unidades la opción ${seleccion}, que incluye:<br> 
-                            ${opciones[seleccion - 1].menu()}
-                         </p>`;
-            break;
-    } 
-    contenedor.appendChild(div);  
+    contenedor.appendChild(div);
+    $(div).append('<button id="btn">Hacer pedido</button>');
+    $('#btn').click(hacerPedido);  
     $("#divResumen").fadeIn(1500, function(){
-        $("#divResumen").fadeOut(15000);
-    }); 
+        setTimeout(function () {
+            $("#divResumen").fadeOut(5000, function(){
+                formPresupuesto.children[2].value = "Resumen del pedido"
+                div.innerHTML = "";
+                $(div).append('<button id="btn2">Ver último resumen</button>');
+                $("#divResumen").fadeIn(1500);
+                $('#btn2').click(function () {cargarPresupuestoUI(articleResumen);});
+            });
+        },55000); 
+        })
 }
 
 function selectConfig(select, tipo) {
