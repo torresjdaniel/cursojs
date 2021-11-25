@@ -105,7 +105,9 @@ function hacerPedido() {
     $.post(URLPOST, presupuestoJSON, (respuesta, estado) => {
         if(estado == "success"){
             modalPedido.hide();
-            alert(`Pedido Enviado. Numero de compra: ${respuesta.id}`);
+            alert(
+                `¡Gracias por el pedido! El número de tu pedido es: ${respuesta.id}. 
+Pronto nos estaremos comunicando con vos`);
             $("#divResumen").fadeOut(2000);
         }
     });
