@@ -23,5 +23,6 @@ selectCantidad.innerHTML = `<option>Cantidad</option>`;
 formPresupuesto.addEventListener("submit", crearPresupuesto);
 selectOpcion.addEventListener("focus", function () {selectConfig(selectOpcion, opcion);});
 selectCantidad.addEventListener("focus", function () {selectConfig(selectCantidad, cantidad);});
+botonEnviar.addEventListener("click", hacerPedido);
 
 

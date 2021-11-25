@@ -14,3 +14,5 @@ const articleResumen = document.getElementById("resumen");
 const selectOpcion = document.getElementById("opcion");
 const selectCantidad = document.getElementById("cantidad");
 const divPresupuesto = document.getElementById("divPresupuesto");
+const botonEnviar = document.getElementById("botonEnviar");
+const modalPedido = new bootstrap.Modal(document.getElementById("modalPedido"));

@@ -11,6 +11,7 @@ function crearPresupuesto(e){
 };
 
 function crearPresupuestoUI(contenedor) {
+    formPresupuesto.children[2].value = "Hacer otro presupuesto"
     contenedor.innerHTML = "";
     let div = document.createElement("div");
     div.id = "divResumen";
@@ -21,13 +22,12 @@ function crearPresupuestoUI(contenedor) {
                              ${opciones[seleccion - 1].menu()}
                          </p>`;
     contenedor.appendChild(div);
-    $(div).append('<button id="btn">Hacer pedido</button>');
-    $('#btn').click(hacerPedido);
+    $(div).append('<button class="botones" data-bs-toggle="modal" data-bs-target="#modalPedido">Hacer pedido</button>');
     $("#divResumen").fadeIn(1500);
 }
 
 function cargarPresupuestoUI(contenedor){
-    formPresupuesto.children[2].value = "Hacer otro resumen"
+    formPresupuesto.children[2].value = "Hacer otro presupuesto"
     contenedor.innerHTML = "";
     let div = document.createElement("div");
     div.id = "divResumen";
@@ -37,14 +37,14 @@ function cargarPresupuestoUI(contenedor){
                              ${opciones[seleccion - 1].menu()}
                          </p>`;
     contenedor.appendChild(div);
-    $(div).append('<button id="btn">Hacer pedido</button>');
-    $('#btn').click(hacerPedido);  
+    $(div).append('<button class="botones" data-bs-toggle="modal" data-bs-target="#modalPedido">Hacer pedido</button>');
+    // $('#btn').click(hacerPedido);  
     $("#divResumen").fadeIn(1500, function(){
         setTimeout(function () {
             $("#divResumen").fadeOut(5000, function(){
                 formPresupuesto.children[2].value = "Resumen del pedido"
                 div.innerHTML = "";
-                $(div).append('<button id="btn2">Ver último resumen</button>');
+                $(div).append('<button id="btn2" class="botones">Ver último resumen</button>');
                 $("#divResumen").fadeIn(1500);
                 $('#btn2').click(function () {cargarPresupuestoUI(articleResumen);});
             });
@@ -99,13 +99,12 @@ function cargarPresupuesto(clave, contenedor){
     }  
 }
 
-
-
 function hacerPedido() {
     let indice = presupuestos.length - 1;
     const presupuestoJSON = JSON.stringify(presupuestos[indice]);
     $.post(URLPOST, presupuestoJSON, (respuesta, estado) => {
         if(estado == "success"){
+            modalPedido.hide();
             alert(`Pedido Enviado. Numero de compra: ${respuesta.id}`);
             $("#divResumen").fadeOut(2000);
         }
