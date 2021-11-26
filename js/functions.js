@@ -112,3 +112,13 @@ Pronto nos estaremos comunicando con vos`);
         }
     });
 }
+
+function enviarPedido(e){
+    e.preventDefault();
+    emailjs.sendForm('contact_service', 'contact_form', formModal)
+        .then(function() {
+            console.log('SUCCESS!');
+        }, function(error) {
+            console.log('FAILED...', error);
+        }); 
+}
