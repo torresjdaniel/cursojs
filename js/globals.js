@@ -8,6 +8,8 @@ let nombre;
 let seleccion; 
 let cantidad;
 let precioFinal;
+let timerID;
+
 
 const ulOpciones = document.getElementById("opciones");
 const formPresupuesto = document.getElementById("presupuesto");
@@ -21,3 +23,4 @@ const modalConfirmacion = new bootstrap.Modal(document.getElementById("modalConf
 const formModal = document.getElementById("formModal");
 const modalContenido = document.getElementById("modalContenido");
 const textoModal = document.getElementById("textoModal");
+

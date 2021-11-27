@@ -41,16 +41,16 @@ function cargarPresupuestoUI(contenedor){
                      <button class="botones botonPedido" data-bs-toggle="modal" data-bs-target="#modalPedido">Hacer pedido</button>`;
     contenedor.appendChild(div);
     $("#divResumen").fadeIn(1500, function(){
-        setTimeout(function () {
-            $("#divResumen").fadeOut(5000, function(){
+        timerID = setTimeout(function () {
+            $("#divResumen").fadeOut(5000, function () {
                 formPresupuesto.children[2].value = "Resumen del pedido"
                 div.innerHTML = "";
                 $(div).append('<button id="btn2" class="botones">Ver último resumen</button>');
                 $("#divResumen").fadeIn(1500);
-                $('#btn2').click(function () {cargarPresupuestoUI(articleResumen);});
+                $('#btn2').click(function () { cargarPresupuestoUI(articleResumen); });
             });
-        },55000); 
-        })
+        }, 55000);
+    })
 }
 
 function selectConfig(select, tipo) {
@@ -103,6 +103,7 @@ function cargarPresupuesto(clave, contenedor){
 
 function enviarPedido(e){
     e.preventDefault();
+    clearTimeout(timerID);
     $("#botonEnviar").fadeOut(250, function (){
         $("#botonCarga").fadeIn(250);        
     });
@@ -119,14 +120,29 @@ function enviarPedido(e){
             p.innerHTML = `¡${nombre}, tu pedido #${numero} fue enviado correctamente!<br> 
                     Te enviamos un resumen a tu email. Pronto nos pondremos en contacto con vos.<br> 
                     Gracias por confiar en Mete La Pata :D.`;       
-            modalPedido.hide();
-            modalConfirmacion.show();
-            $("#divResumen").fadeOut(2000);
+            reinicio();
         }, function(error) {
             p.innerHTML = `¡${nombre}, lamentablemente no pudimos tomar tu pedido. Te pedimos que pruebes más tarde.`;
-            modalPedido.hide();
-            modalConfirmacion.show();
-            $("#divResumen").fadeOut(2000);
+            reinicio();
         });   
+}
+
+function reinicio(){
+    formModal.children[0].children[1].value = "";
+    formModal.children[1].children[1].value = "";
+    formModal.children[2].children[1].value = "";
+    $("#botonCarga").fadeOut();
+    $("#botonEnviar").fadeIn();
+    modalPedido.hide();
+    modalConfirmacion.show();
+    $("#divResumen").fadeOut(2000);
+    formPresupuesto.children[2].value = "Resumen del pedido";
+    articleResumen.innerHTML = "";
+    let div = document.createElement("div");
+    div.id = "divResumen";
+    $(div).append('<button id="btn2" class="botones">Ver último resumen</button>');
+    articleResumen.appendChild(div);
+    $("#divResumen").fadeIn(1500);
+    $('#btn2').click(function () {cargarPresupuestoUI(articleResumen);}); 
 }
 
