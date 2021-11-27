@@ -44,6 +44,7 @@ form{
 }
 
 .botones{
+    color: #3b2700;
     margin: 1% auto;
     margin-top: 2%;
     background-color: #F2B705;
@@ -108,6 +109,12 @@ li{
 #modalContenido{
     border: none;
 }
+
+#botonCarga{
+    color: #3b2700;
+    display: none;
+}
+
 
 /* Media query */
 

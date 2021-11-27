@@ -11,7 +11,7 @@ function crearPresupuesto(e){
 };
 
 function crearPresupuestoUI(contenedor) {
-    textoModal.innerHTML = `${nombre} por favor ingresa tus datos para procesar el pedido`
+    textoModal.innerHTML = `${nombre} por favor ingresa tus datos para procesar el pedido.`
     formPresupuesto.children[2].value = "Hacer otro presupuesto"
     contenedor.innerHTML = "";
     let div = document.createElement("div");
@@ -28,7 +28,7 @@ function crearPresupuestoUI(contenedor) {
 }
 
 function cargarPresupuestoUI(contenedor){
-    textoModal.innerHTML = `${nombre} por favor ingresa tus datos para procesar el pedido`
+    textoModal.innerHTML = `${nombre} por favor ingresa tus datos para procesar el pedido.`
     formPresupuesto.children[2].value = "Hacer otro presupuesto"
     contenedor.innerHTML = "";
     let div = document.createElement("div");
@@ -103,6 +103,9 @@ function cargarPresupuesto(clave, contenedor){
 
 function enviarPedido(e){
     e.preventDefault();
+    $("#botonEnviar").fadeOut(250, function (){
+        $("#botonCarga").fadeIn(250);        
+    });
     modalContenido.innerHTML = "";
     const email = formModal.children[0].children[1].value;
     const cel = parseInt(formModal.children[1].children[1].value);
@@ -126,3 +129,11 @@ function enviarPedido(e){
             $("#divResumen").fadeOut(2000);
         });   
 }
+
+p.innerHTML = `¡${nombre}, tu pedido #${numero} fue enviado correctamente!<br> 
+                    Te enviamos un resumen a tu email. Pronto nos pondremos en contacto con vos.<br> 
+                    Gracias por confiar en Mete La Pata :D.`;       
+            modalPedido.hide();
+            modalConfirmacion.show();
+            $("#botonCarga").fadeOut(250)
+            $("#divResumen").fadeOut(2000);
