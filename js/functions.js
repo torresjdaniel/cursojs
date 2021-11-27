@@ -130,10 +130,3 @@ function enviarPedido(e){
         });   
 }
 
-p.innerHTML = `¡${nombre}, tu pedido #${numero} fue enviado correctamente!<br> 
-                    Te enviamos un resumen a tu email. Pronto nos pondremos en contacto con vos.<br> 
-                    Gracias por confiar en Mete La Pata :D.`;       
-            modalPedido.hide();
-            modalConfirmacion.show();
-            $("#botonCarga").fadeOut(250)
-            $("#divResumen").fadeOut(2000);
