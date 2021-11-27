@@ -23,3 +23,15 @@ class Presupuesto{
         this.precioFinalElegido = precioFinalElegido;
     }
 }
+
+
+// class Pedido{
+//     constructor(nombre, opcionPedida, cantidadPedida, precioFinal, email, cel){
+//         this.nombre = nombre;
+//         this.opcionPedida = opcionPedida;
+//         this.cantidadPedida = cantidadPedida;
+//         this.precioFinal = precioFinal;
+//         this.email = email;
+//         this.cel = cel;
+//     }
+// }

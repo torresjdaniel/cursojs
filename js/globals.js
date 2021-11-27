@@ -18,3 +18,6 @@ const divPresupuesto = document.getElementById("divPresupuesto");
 const botonEnviar = document.getElementById("botonEnviar");
 const modalPedido = new bootstrap.Modal(document.getElementById("modalPedido"));
 const formModal = document.getElementById("formModal");
+const modalContenido = document.getElementById("modalContenido");
+const modalConfirmacion = new bootstrap.Modal(document.getElementById("modalConfirmacion"));
+const textoModal = document.getElementById("textoModal");

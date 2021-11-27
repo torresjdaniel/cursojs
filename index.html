@@ -31,24 +31,20 @@
         <div class="modal fade" id="modalPedido" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalPedidoLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header modalConfig">
                   <h2 class="modal-title" id="modalPedidoLabel">Finaliza tu pedido</h2>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                  <p>Deja tus datos y nos comunicamos con vos cuanto antes</p>  
+                <div class="modal-body modalConfig">
+                  <p id="textoModal"></p>  
                   <form id="formModal">
                     <div class="mb-3">
-                      <label for="modalNombre" class="col-form-label">Nombre:</label>
-                      <input name="user_name" type="text" class="form-control" id="modalNombre">
-                    </div>
-                    <div class="mb-3">
                       <label for="modalEmail" class="col-form-label">Email:</label>
-                      <input name="user_email" type="email" class="form-control" id="modalEmail">
+                      <input name="user_email" type="email" class="form-control" id="modalEmail" required>
                     </div>
                     <div class="mb-3">
                         <label for="modalTel" class="col-form-label">Celular:</label>
-                        <input name="contact_number" type="tel" class="form-control" id="modalTel">
+                        <input name="contact_number" type="tel" class="form-control" id="modalTel" required>
                       </div>
                     <div class="mb-3">
                       <label for="message-text" class="col-form-label">Consultas:</label>
@@ -56,9 +52,20 @@
                     </div>
                   </form>
                 </div>
-                <div class="modal-footer">
-                  <button  class="botones" data-bs-dismiss="modal">Cerrar</button>
+                <div class="modal-footer modalConfig">
                   <button type="submit" form="formModal" class="botones" id="botonEnviar">Enviar pedido</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="modalConfirmacion" tabindex="-1" aria-labelledby="modalConfirmacion" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header modalConfig2 modalHeader2">
+                  <h3 class="modal-title" id="exampleModalLabel">Confirmación de pedido</h3>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="modalContenido" class="modal-body modalConfig2">
                 </div>
               </div>
             </div>

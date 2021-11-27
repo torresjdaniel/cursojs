@@ -1,9 +1,3 @@
-
-// (function() {
-//     // https://dashboard.emailjs.com/admin/integration
-//     emailjs.init('user_vTr8itaXy0Ah5j9JAS5ZD');
-// })();
-
 emailjs.init(EmailJsUserID);
 
 $.get(URLJSON, function(datos, estado) {

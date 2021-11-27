@@ -11,34 +11,35 @@ function crearPresupuesto(e){
 };
 
 function crearPresupuestoUI(contenedor) {
+    textoModal.innerHTML = `${nombre} por favor ingresa tus datos para procesar el pedido`
     formPresupuesto.children[2].value = "Hacer otro presupuesto"
     contenedor.innerHTML = "";
     let div = document.createElement("div");
     div.id = "divResumen";
     precioFinal = opciones[seleccion - 1].precio * cantidad; 
     div.innerHTML = `<h2>¡Hola ${nombre}! Este es el resumen de tu pedido:</h2>
-                         <p>El costo de tu pedido es: ${precioFinal}$<br>
-                             Elegiste ${cantidad} ${cantidad == 1 ? "unidad" : "unidades" } de la opción ${seleccion}, que incluye:<br> 
-                             ${opciones[seleccion - 1].menu()}
-                         </p>`;
+                     <p>El costo de tu pedido es: ${precioFinal}$<br>
+                        Elegiste ${cantidad} ${cantidad == 1 ? "unidad" : "unidades" } de la opción ${seleccion}, que incluye:<br> 
+                        ${opciones[seleccion - 1].menu()}
+                     </p>
+                     <button class="botones botonPedido" data-bs-toggle="modal" data-bs-target="#modalPedido">Hacer pedido</button>`;
     contenedor.appendChild(div);
-    $(div).append('<button class="botones" data-bs-toggle="modal" data-bs-target="#modalPedido">Hacer pedido</button>');
     $("#divResumen").fadeIn(1500);
 }
 
 function cargarPresupuestoUI(contenedor){
+    textoModal.innerHTML = `${nombre} por favor ingresa tus datos para procesar el pedido`
     formPresupuesto.children[2].value = "Hacer otro presupuesto"
     contenedor.innerHTML = "";
     let div = document.createElement("div");
     div.id = "divResumen";
     div.innerHTML = `<h2>¡Hola ${nombre}! Este es el resumen de tu último presupuesto:</h2>
-                         <p>El costo de tu pedido es: ${precioFinal}$<br>
-                             Elegiste ${cantidad} ${cantidad == 1 ? "unidad" : "unidades" } de la opción ${seleccion}, que incluye:<br> 
-                             ${opciones[seleccion - 1].menu()}
-                         </p>`;
+                     <p>El costo de tu pedido es: ${precioFinal}$<br>
+                        Elegiste ${cantidad} ${cantidad == 1 ? "unidad" : "unidades" } de la opción ${seleccion}, que incluye:<br> 
+                        ${opciones[seleccion - 1].menu()}
+                     </p>
+                     <button class="botones botonPedido" data-bs-toggle="modal" data-bs-target="#modalPedido">Hacer pedido</button>`;
     contenedor.appendChild(div);
-    $(div).append('<button class="botones" data-bs-toggle="modal" data-bs-target="#modalPedido">Hacer pedido</button>');
-    // $('#btn').click(hacerPedido);  
     $("#divResumen").fadeIn(1500, function(){
         setTimeout(function () {
             $("#divResumen").fadeOut(5000, function(){
@@ -99,26 +100,29 @@ function cargarPresupuesto(clave, contenedor){
     }  
 }
 
-function hacerPedido() {
-    let indice = presupuestos.length - 1;
-    const presupuestoJSON = JSON.stringify(presupuestos[indice]);
-    $.post(URLPOST, presupuestoJSON, (respuesta, estado) => {
-        if(estado == "success"){
-            modalPedido.hide();
-            alert(
-                `¡Gracias por el pedido! El número de tu pedido es: ${respuesta.id}. 
-Pronto nos estaremos comunicando con vos`);
-            $("#divResumen").fadeOut(2000);
-        }
-    });
-}
 
 function enviarPedido(e){
     e.preventDefault();
-    emailjs.sendForm('contact_service', 'contact_form', formModal)
-        .then(function() {
-            console.log('SUCCESS!');
+    modalContenido.innerHTML = "";
+    const email = formModal.children[0].children[1].value;
+    const cel = parseInt(formModal.children[1].children[1].value);
+    const numero = cel * Math.random() | 0;
+    const consulta = formModal.children[2].children[1].value;
+    const pedido = {nombre: nombre, seleccion: opciones[seleccion - 1].menu(), cantidad: cantidad, precio: precioFinal, email: email, cel: cel, consulta: consulta, numero: numero};
+    let p = document.createElement("p");
+    modalContenido.appendChild(p);
+    emailjs.send('contact_service', 'contact_form', pedido)
+        .then(function(response) {
+            p.innerHTML = `¡${nombre}, tu pedido #${numero} fue enviado correctamente!<br> 
+                    Te enviamos un resumen a tu email. Pronto nos pondremos en contacto con vos.<br> 
+                    Gracias por confiar en Mete La Pata :D.`;       
+            modalPedido.hide();
+            modalConfirmacion.show();
+            $("#divResumen").fadeOut(2000);
         }, function(error) {
-            console.log('FAILED...', error);
-        }); 
+            p.innerHTML = `¡${nombre}, lamentablemente no pudimos tomar tu pedido. Te pedimos que pruebes más tarde.`;
+            modalPedido.hide();
+            modalConfirmacion.show();
+            $("#divResumen").fadeOut(2000);
+        });   
 }
